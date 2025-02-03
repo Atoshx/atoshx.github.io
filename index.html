@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine?</title>
+  <style>
+    /* Basic reset and styling for a centered layout */
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #ffe6e6;
+      font-family: Arial, sans-serif;
+      position: relative; /* Needed so the absolute positioned button is relative to the body */
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    /* Style for the Yes button */
+    #yesButton {
+      background-color: #ff6666;
+      color: white;
+    }
+    
+    /* Style for the No button. It is positioned absolute so we can move it around */
+    #noButton {
+      background-color: #cccccc;
+      color: #333;
+      position: absolute;
+      /* Starting position (centered near the bottom half) */
+      top: 60%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <h1>Will you be my Valentine?</h1>
+  <button id="yesButton">Yes</button>
+  <button id="noButton">No</button>
+  
+  <script>
+    // Grab references to the buttons
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+
+    // When the Yes button is clicked, remove the buttons and replace the page content with "Hello World"
+    yesButton.addEventListener('click', function() {
+      // Replace the entire body content with a new <h1> element containing "Hello World"
+      document.body.innerHTML = '<h1>YIPPEEEEEEE!</h1>';
+    });
+
+    // When the mouse hovers over the No button, move it to a random position
+    noButton.addEventListener('mouseover', function() {
+      // Get button dimensions
+      const btnWidth = noButton.offsetWidth;
+      const btnHeight = noButton.offsetHeight;
+      // Calculate the maximum left and top values so that the button stays in view
+      const maxX = window.innerWidth - btnWidth;
+      const maxY = window.innerHeight - btnHeight;
+      // Generate random x and y coordinates
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+      // Move the button to the new random position
+      noButton.style.left = randomX + 'px';
+      noButton.style.top = randomY + 'px';
+    });
+  </script>
+</body>
+</html>
